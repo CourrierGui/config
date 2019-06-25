@@ -33,16 +33,19 @@ filetype plugin indent on    " required
 let mapleader = ","
 let localmapleader = "\\"
 
+
 "split navigations
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+"Ultisnips
+let g:tex_flavor='latex'
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<c-tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsExpandTrigger="<C-e>"
+let g:UltiSnipsJumpForwardTrigger="<C-e>"
+let g:UltiSnipsJumpBackwardTrigger="<C-z>"
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
@@ -58,25 +61,25 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 " NERDTress File highlighting
 function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
- exec 'autocmd FileType nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
- exec 'autocmd FileType nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
+ exec 'autocmd FileType NERDTree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
+ exec 'autocmd FileType NERDTree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
 endfunction
 
-call NERDTreeHighlightFile('jade', 'green', 'none', 'green', '#151515')
-call NERDTreeHighlightFile('ini', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('md', 'blue', 'none', '#3366FF', '#151515')
-call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('config', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('conf', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('json', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('styl', 'cyan', 'none', 'cyan', '#151515')
-call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
-call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
-call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
-call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
-call NERDTreeHighlightFile('cpp', 'Red', 'none', '#ff00ff', '#151515')
-call NERDTreeHighlightFile('tex', 'yellow', 'none', '#ff00ff', '#151515')
+call NERDTreeHighlightFile('jade'  , 'green'  , 'none', 'green'  , '#151515')
+call NERDTreeHighlightFile('ini'   , 'yellow' , 'none', 'yellow' , '#151515')
+call NERDTreeHighlightFile('md'    , 'blue'   , 'none', '#3366FF', '#151515')
+call NERDTreeHighlightFile('yml'   , 'yellow' , 'none', 'yellow' , '#151515')
+call NERDTreeHighlightFile('config', 'yellow' , 'none', 'yellow' , '#151515')
+call NERDTreeHighlightFile('conf'  , 'yellow' , 'none', 'yellow' , '#151515')
+call NERDTreeHighlightFile('json'  , 'yellow' , 'none', 'yellow' , '#151515')
+call NERDTreeHighlightFile('html'  , 'yellow' , 'none', 'yellow' , '#151515')
+call NERDTreeHighlightFile('styl'  , 'cyan'   , 'none', 'cyan'   , '#151515')
+call NERDTreeHighlightFile('css'   , 'cyan'   , 'none', 'cyan'   , '#151515')
+call NERDTreeHighlightFile('coffee', 'Red'    , 'none', 'red'    , '#151515')
+call NERDTreeHighlightFile('js'    , 'Red'    , 'none', '#ffa500', '#151515')
+call NERDTreeHighlightFile('php'   , 'Magenta', 'none', '#ff00ff', '#151515')
+call NERDTreeHighlightFile('cpp'   , 'Red'    , 'none', '#ff00ff', '#151515')
+call NERDTreeHighlightFile('tex'   , 'yellow' , 'none', '#ff00ff', '#151515')
 
 " Syntastic
 set statusline+=%#warningmsg#
@@ -237,19 +240,3 @@ function! QuickfixToggle()
         let g:quickfix_is_open = 1
     endif
 endfunction
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
