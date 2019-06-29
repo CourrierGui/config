@@ -1,6 +1,5 @@
 #alias open=gnome-open
-alias android-studio-launch='~/android-studio/bin/./studio.sh'
-alias matlab='~/matlab/bin/./matlab'
+#alias matlab='~/matlab/bin/./matlab'
 alias rapport-stage-1A='vim ~/Documents/1A_supelec/stage/rapport/rapport.tex'
 alias aliases='vim ~/.bash_aliases'
 alias projet-1A='cd ~/Documents/1A_supelec/projet/code; ls'
