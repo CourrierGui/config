@@ -20,6 +20,10 @@ Hide untracked file:
 
 > config config --local status.showUntrackedFiles no
 
+## Easy version
+
+> curl -Lks http://bit.do/cfg-init | /bin/bash
+
 ## Restore configuration in a new computer
 
 > alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
@@ -30,8 +34,10 @@ Hide untracked file:
 
 > config checkout
 
-> mkdir -p .config-backup && \
-config checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | \
-xargs -I{} mv {} .config-backup/{}
+> mkdir -p .config-backup && config checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} .config-backup/{}
 
 > config config --local status.showUntrackedFiles no
+
+## Easy version
+
+> curl -Lks http://bit.do/cfg-install | /bin/bash
