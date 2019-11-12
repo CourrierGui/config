@@ -121,5 +121,3 @@ export MAP_ROOT=/usr/share/X11/xkb/symbols/
 export ANDROID_ROOT=/home/guillaume/android-studio/bin/
 export MATLAB_ROOT=/usr/local/MATLAB/R2017b/bin/
 export current_dir=/home/guillaume/Documents/2A_supelec/sequence-6/
-
-source /opt/ros/melodic/setup.bash
