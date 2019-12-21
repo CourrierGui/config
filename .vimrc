@@ -42,9 +42,27 @@ filetype plugin indent on    " required
 
 " Mappings
 " let mapleader = ","
-let mapleader="\<Space>"
+let mapleader="<Space>"
 let localmapleader = "\\"
 
+" Make moving between wraped lines more intuitive
+nnoremap j gj
+nnoremap k gk
+nnoremap 0 g0
+nnoremap ^ g^
+nnoremap $ g$
+
+" make moving between buffers easier
+nmap gh <C-w>h
+nmap gj <C-w>j
+nmap gk <C-w>k
+nmap gl <C-w>l
+
+" make scolling faster
+nnoremap J 5j 
+nnoremap K 5k
+noremap <leader>j J
+noremap <leader>k G
 nnoremap <leader>sc :lclose<CR>
 nnoremap <leader><space> :noh<cr>
 noremap <leader>- dd2kp
@@ -60,11 +78,11 @@ nnoremap <leader>j <c-w><c-j>
 nnoremap <leader>k <c-w><c-k>
 nnoremap <leader>l <c-w><c-l>
 
-inoremap <leader>h <esc>i
-inoremap <leader>j <esc>ja
-inoremap <leader>k <esc>ka
-inoremap <leader>l <esc>la
-inoremap <leader>o <esc>o
+" inoremap <leader>h <esc>i
+" inoremap <leader>j <esc>ja
+" inoremap <leader>k <esc>ka
+" inoremap <leader>l <esc>la
+" inoremap <leader>o <esc>o
 
 " nnoremap <leader>n :NERDTreeTabsToggle<CR>
 nnoremap <leader>n :bn<CR>

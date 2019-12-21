@@ -1,7 +1,0 @@
-alias aliases='vim ~/.bash_aliases'
-alias map='cd /usr/share/X11/xkb/symbols/'
-alias source-ros='source /opt/ros/melodic/setup.bash;source ~/ros-ws/devel/setup.bash;'
-alias source-ros2='source /opt/ros/dashing/setup.bash;'
-alias export-ros='export ROS_MASTER_URI=http://192.168.2.104:11311;export ROS_IP=192.168.2.105;export ROS_HOSTNAME=192.168.2.105;'
-alias git-log='git log --graph --decorate --oneline'
-alias config='/usr/bin/git --git-dir=/home/guillaume/.cfg/ --work-tree=/home/guillaume'
