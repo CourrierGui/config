@@ -1,7 +1,7 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-" Vundle ---------------------- {{{
+" Vundle {{{
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -44,12 +44,10 @@ filetype plugin indent on    " required
 
 " }}}
 
-" Mappings ----------------------- {{{
-" Mappings
+" Mappings {{{
 " let mapleader = ","
-let mapleader="<Space>"
+let mapleader="\<Space>"
 let localmapleader = "\\"
-
 
 " Make moving between wraped lines more intuitive
 nnoremap j gj
@@ -68,15 +66,17 @@ nmap gl <C-w>l
 nnoremap J 5j 
 nnoremap K 5k
 noremap <leader>j J
-noremap <leader>k G
+noremap <leader>k K
+
 nnoremap <leader>sc :lclose<CR>
+nnoremap <leader>sn :lnext<CR>
+nnoremap <leader>sp :lprevious<CR>
+
 nnoremap <leader><space> :noh<cr>
 noremap <leader>- dd2kp
 noremap <leader>_ ddp
+nnoremap <leader>x xp
 nnoremap <enter> o<esc>
-" inoremap <c-u> <esc>veU<esc>ea
-" nnoremap <c-u> veU<esc>
-" inoremap <c-d> <esc>ddi
 
 "split navigations
 nnoremap <leader>h <c-w><c-h>
@@ -84,13 +84,6 @@ nnoremap <leader>j <c-w><c-j>
 nnoremap <leader>k <c-w><c-k>
 nnoremap <leader>l <c-w><c-l>
 
-" inoremap <leader>h <esc>i
-" inoremap <leader>j <esc>ja
-" inoremap <leader>k <esc>ka
-" inoremap <leader>l <esc>la
-" inoremap <leader>o <esc>o
-
-" nnoremap <leader>n :NERDTreeTabsToggle<CR>
 nnoremap <leader>n :bn<CR>
 nnoremap <leader>N :bp<CR>
 
@@ -104,20 +97,18 @@ nnoremap <Right> :vertical resize +2<CR>
 nnoremap <leader>rf :set foldlevel=1<CR>
 nnoremap <leader>uf :set foldlevel=2<CR>
 
-nnoremap <leader>x xp
-" nnoremap <leader>H 0
-" nnoremap <leader>L $
-" vnoremap <leader>q `><esc>i"<esc>v`<<esc>i"<esc>v
-
 " TagBar
 nnoremap <silent> <Leader>b :TagbarToggle<CR>
 
 "Editing and sourcing ~/.vimrc
 nnoremap <leader>ev :vsplit $MYVIMRC<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
+
+" netrw 
+nnoremap <leader>oe :Lexplore<CR>
 " }}}
 
-" Options ---------------------- {{{
+" Options {{{
 set number
 set ttimeoutlen=10
 " set relativenumber
@@ -139,7 +130,7 @@ set encoding=utf-8
 set laststatus=2
 " }}}
 
-" Plugins --------------- {{{
+" Plugins configuration {{{
 " Ultisnips
 let g:tex_flavor='latex'
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
@@ -212,14 +203,14 @@ if 'VIRTUAL_ENV' in os.environ:
 EOF
 " }}}
 
-" XML file settings ---------------------- {{{
+" XML file settings {{{
 augroup filetype_html
     autocmd!
 	autocmd BufNewFile,BufRead *.launch,*.ui set filetype=xml
 augroup END
 " }}}
 
-" Python file settings ---------------------- {{{
+" Python file settings {{{
 augroup filetype_python
     autocmd!
 	" Enable folding
@@ -228,14 +219,14 @@ augroup filetype_python
 augroup END
 " }}}
 
-" Vimscript file settings ---------------------- {{{
+" Vimscript file settings {{{
 augroup filetype_vim
     autocmd!
     autocmd FileType vim setlocal foldmethod=marker | setlocal foldlevel=0
 augroup END
 " }}}
 
-" Markdown file settings ---------------------- {{{
+" Markdown file settings {{{
 augroup filetype_md
   autocmd!
 	autocmd FileType markdown noremap <leader>l :w<bar>!pandoc -so $(echo % \| sed 's/md$/pdf/') % <CR><CR>:!pkill -HUP mupdf<CR><CR>
@@ -243,7 +234,7 @@ augroup filetype_md
 augroup END
 " }}}
 
-" LateX file settings ---------------------- {{{
+" LateX file settings {{{
 augroup filetype_latex
 	autocmd!
     autocmd FileType tex nnoremap <leader>l :w<bar>!xelatex -shell-escape % <CR><CR>:!pkill -HUP mupdf<CR><CR>
@@ -253,20 +244,20 @@ augroup filetype_latex
 augroup END
 " }}}
 
-" Lilypond file settings ---------------------- {{{
+" Lilypond file settings {{{
 augroup filetype_lilypond
 	autocmd!
 	au BufNewFile,BufRead *.ly nnoremap <leader>r :!lilypond --pdf %<CR>
 augroup END
 " }}}
 
-" reStructuredText file settings ---------------- {{{
+" reStructuredText file settings {{{
 augroup filetype_rst
 	au BufNewFile,BufRead *.rst nnoremap <leader>dr :!rosdoc_lite .<CR>
 augroup END
 " }}}
 
-" Functions ------------- {{{
+" Functions {{{
 function! FoldColumnToggle()
     if &foldcolumn
         setlocal foldcolumn=0
