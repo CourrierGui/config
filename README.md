@@ -15,7 +15,7 @@ source ~/.bashrc
 config config --local status.showUntrackedFiles no
 ```
 
-## Restore configuration in a new computer
+## Restore configuration
 
 ```
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
