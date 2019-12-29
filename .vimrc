@@ -79,11 +79,6 @@ nnoremap <leader>x xp
 nnoremap <enter> o<esc>
 
 "split navigations
-nnoremap <leader>h <c-w><c-h>
-nnoremap <leader>j <c-w><c-j>
-nnoremap <leader>k <c-w><c-k>
-nnoremap <leader>l <c-w><c-l>
-
 nnoremap <leader>n :bn<CR>
 nnoremap <leader>N :bp<CR>
 
@@ -105,7 +100,8 @@ nnoremap <leader>ev :vsplit $MYVIMRC<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
 
 " netrw 
-nnoremap <leader>oe :Lexplore<CR>
+nnoremap <leader>ee :Explore<CR>
+nnoremap <leader>le :Lexplore<CR>
 " }}}
 
 " Options {{{
@@ -128,9 +124,11 @@ set encoding=utf-8
 
 " set scrolloff=20
 set laststatus=2
+
 " }}}
 
 " Plugins configuration {{{
+
 " Ultisnips
 let g:tex_flavor='latex'
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
@@ -143,7 +141,6 @@ let g:UltiSnipsEditSplit="vertical"
 
 " SimpylFold
 let g:SimpylFold_docstring_preview=1
-
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
@@ -160,9 +157,10 @@ let g:autopep8_cmd="/home/guillaume/.local/bin/autopep8"
 " netrw
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
-let g:netrw_browse_split = 4
-let g:netrw_altv = 1
-let g:netrw_winsize = 25
+let g:netrw_browse_split = 0
+autocmd FileType netrw setlocal bufhidden=delete
+"let g:netrw_altv = 1
+"let g:netrw_winsize = 25
 " augroup ProjectDrawer
 "   autocmd!
 "   autocmd VimEnter * :Vexplore
@@ -173,12 +171,10 @@ let g:netrw_winsize = 25
 nnoremap <leader>h <Esc>:call ToggleHardMode()<CR>
 " autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
 
-
 " vim-airline
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
-
 let g:airline_powerline_fonts=1
 let g:airline_detect_modified=1
 let g:airline_detect_paste=1
@@ -201,6 +197,7 @@ if 'VIRTUAL_ENV' in os.environ:
   activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
   execfile(activate_this, dict(__file__=activate_this))
 EOF
+
 " }}}
 
 " XML file settings {{{
@@ -237,7 +234,8 @@ augroup END
 " LateX file settings {{{
 augroup filetype_latex
 	autocmd!
-    autocmd FileType tex nnoremap <leader>l :w<bar>!xelatex -shell-escape % <CR><CR>:!pkill -HUP mupdf<CR><CR>
+    autocmd FileType tex nnoremap <leader>l :w<bar>!pdflatex -shell-escape % <CR><CR>:!pkill -HUP mupdf<CR><CR>
+    autocmd FileType tex nnoremap <leader>xl :w<bar>!xelatex -shell-escape % <CR><CR>:!pkill -HUP mupdf<CR><CR>
 	autocmd FileType tex nnoremap <leader>f :call FoldColumnToggle()<cr>
 	"autocmd FileType tex nnoremap <leader>s :!mupdf $(echo % \| sed 's/tex$/pdf/') & disown<CR><CR>
 	autocmd FileType tex nnoremap <leader>s :!gnome-open $(echo % \| sed 's/tex$/pdf/') & disown<CR><CR>
