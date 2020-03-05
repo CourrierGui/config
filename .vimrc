@@ -11,28 +11,40 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
+
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'rdnetto/YCM-Generator'
+
 Plugin 'tmhedberg/SimpylFold'
 Plugin 'vim-scripts/indentpython.vim'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'nvie/vim-flake8'
+Plugin 'tell-k/vim-autopep8'
+
 Plugin 'jnurmine/Zenburn'
 Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'xuhdev/vim-latex-live-preview'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-Plugin 'vim-latex/vim-latex'
 Plugin 'jiangmiao/auto-pairs'
-Plugin 'vim-scripts/a.vim'
-Plugin 'tell-k/vim-autopep8'
+Plugin 'majutsushi/tagbar'
 Plugin 'wikitopian/hardmode'
 Plugin 'tpope/vim-commentary'
+Plugin 'ludovicchabant/vim-gutentags'
+Plugin 'tpope/vim-surround'
+
+Plugin 'vhdirk/vim-cmake'
+Plugin 'vim-scripts/a.vim'
+
+Plugin 'tpope/vim-fugitive'
+
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'majutsushi/tagbar'
-Plugin 'rdnetto/YCM-Generator'
 
+Plugin 'lervag/vimtex'
+
+" Plugin 'vim-latex/vim-latex'
+" Plugin 'xuhdev/vim-latex-live-preview'
 " Plugin 'jistr/vim-nerdtree-tabs' " à enlever
 " Plugin 'scrooloose/nerdtree' " à enlever
 " Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'} " à enlever
@@ -45,8 +57,8 @@ filetype plugin indent on    " required
 " }}}
 
 " Mappings {{{
-" let mapleader = ","
-let mapleader="\<Space>"
+let mapleader = ","
+" let mapleader="\<Space>"
 let localmapleader = "\\"
 
 " Make moving between wraped lines more intuitive
@@ -73,22 +85,27 @@ nnoremap <leader>sn :lnext<CR>
 nnoremap <leader>sp :lprevious<CR>
 
 nnoremap <leader><space> :noh<cr>
-noremap <leader>- dd2kp
-noremap <leader>_ ddp
 nnoremap <leader>x xp
 nnoremap <enter> o<esc>
+noremap <leader>- dd2kp
+noremap <leader>_ ddp
 
-"split navigations
-nnoremap <leader>n :bn<CR>
-nnoremap <leader>N :bp<CR>
+" buffer navigations
+nnoremap <leader>bn :bn<CR>
+nnoremap <leader>bN :bp<CR>
 
+" tag navigations
+nnoremap <leader>tn :tn<CR>
+nnoremap <leader>tN :tp<CR>
+
+" make arrow keys usefull
 nnoremap <Up> :resize +2<CR>
 nnoremap <Down> :resize -2<CR>
 nnoremap <Left> :vertical resize -2<CR>
 nnoremap <Right> :vertical resize +2<CR>
 
 " Enable folding with the spacebar
-" nnoremap <space> za
+nnoremap <space> za
 nnoremap <leader>rf :set foldlevel=1<CR>
 nnoremap <leader>uf :set foldlevel=2<CR>
 
@@ -107,22 +124,31 @@ nnoremap <leader>le :Lexplore<CR>
 " Options {{{
 set number
 set ttimeoutlen=10
-" set relativenumber
+set relativenumber
 " set shiftround
 
 set tabstop=2
 set shiftwidth=2
 set expandtab
-set autoindent
+
+set wildmenu
+set path+=**
+set wildignore+=**/build/**
 
 set showmatch
 set hlsearch
+nohlsearch
 set incsearch
+
+set autoindent
 set smartindent
 set cindent
-set encoding=utf-8
 
-" set scrolloff=20
+" Better C++ indentation of lambda function
+set cino=j1,(0,ws,Ws
+
+set encoding=utf-8
+" Display status line
 set laststatus=2
 
 " }}}
@@ -141,9 +167,11 @@ let g:UltiSnipsEditSplit="vertical"
 
 " SimpylFold
 let g:SimpylFold_docstring_preview=1
+
+" Syntastic
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 let g:syntastic_python_checkers = ['flake8']
 
@@ -159,17 +187,9 @@ let g:netrw_banner = 0
 let g:netrw_liststyle = 3
 let g:netrw_browse_split = 0
 autocmd FileType netrw setlocal bufhidden=delete
-"let g:netrw_altv = 1
-"let g:netrw_winsize = 25
-" augroup ProjectDrawer
-"   autocmd!
-"   autocmd VimEnter * :Vexplore
-" augroup END
-
 
 " Vim HardMode config
 nnoremap <leader>h <Esc>:call ToggleHardMode()<CR>
-" autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
 
 " vim-airline
 if !exists('g:airline_symbols')
@@ -186,6 +206,8 @@ colors zenburn
 
 " YouCompleteMe
 let g:ycm_autoclose_preview_window_after_completion=1
+let g:ycm_max_diagnostics_to_display=300
+let g:ycm_confirm_extra_conf=0
 map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 " python with virtualenv support
@@ -198,6 +220,11 @@ if 'VIRTUAL_ENV' in os.environ:
   execfile(activate_this, dict(__file__=activate_this))
 EOF
 
+" vimtex
+if !exists('g:ycm_semantic_triggers')
+  let g:ycm_semantic_triggers = {}
+endif
+au VimEnter * let g:ycm_semantic_triggers.tex=g:vimtex#re#youcompleteme
 " }}}
 
 " XML file settings {{{
