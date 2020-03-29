@@ -42,6 +42,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 
 Plugin 'lervag/vimtex'
+Plugin 'vimwiki/vimwiki'
 
 " Plugin 'vim-latex/vim-latex'
 " Plugin 'xuhdev/vim-latex-live-preview'
@@ -60,6 +61,9 @@ filetype plugin indent on    " required
 let mapleader = ","
 " let mapleader="\<Space>"
 let localmapleader = "\\"
+
+" Easier move between methods
+nnoremap <leader>m ]m
 
 " Make moving between wraped lines more intuitive
 nnoremap j gj
