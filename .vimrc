@@ -62,6 +62,10 @@ let mapleader = ","
 " let mapleader="\<Space>"
 let localmapleader = "\\"
 
+" Copy and pasting
+vnoremap <C-y> "*y :let @+=@*<CR>
+nnoremap <leader>p "+P
+
 " Easier move between methods
 nnoremap <leader>m ]m
 
