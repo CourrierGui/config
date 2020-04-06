@@ -152,6 +152,9 @@ set autoindent
 set smartindent
 set cindent
 
+set spell
+set spelllang=en_US,fr_ch
+
 " Better C++ indentation of lambda function
 set cino=j1,(0,ws,Ws
 
