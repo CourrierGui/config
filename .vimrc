@@ -126,7 +126,7 @@ nnoremap <leader>sv :source $MYVIMRC<CR>
 
 " netrw 
 nnoremap <leader>ee :Explore<CR>
-nnoremap <leader>le :Lexplore<CR>
+nnoremap <leader>le :Lexplore<bar>vertical resize 30<CR>
 " }}}
 
 " Options {{{
@@ -153,7 +153,7 @@ set smartindent
 set cindent
 
 set spell
-set spelllang=en_US,fr_ch
+set spelllang=en,fr
 
 " Better C++ indentation of lambda function
 set cino=j1,(0,ws,Ws
