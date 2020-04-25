@@ -22,6 +22,7 @@ Plugin 'nvie/vim-flake8'
 Plugin 'tell-k/vim-autopep8'
 
 Plugin 'jnurmine/Zenburn'
+Plugin 'rafi/awesome-vim-colorschemes'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'majutsushi/tagbar'
@@ -216,9 +217,9 @@ let g:airline_detect_modified=1
 let g:airline_detect_paste=1
 let g:airline_theme='base16'
 
-" Color syntaxing via Zenburn
-set t_Co=256
-colors zenburn
+" colorscheme zenburn
+colorscheme dracula
+" colorscheme gotham
 
 " YouCompleteMe
 let g:ycm_autoclose_preview_window_after_completion=1
