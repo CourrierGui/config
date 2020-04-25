@@ -44,6 +44,7 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'lervag/vimtex'
 Plugin 'vimwiki/vimwiki'
 
+Plugin 'bfrg/vim-cpp-modern'
 " Plugin 'vim-latex/vim-latex'
 " Plugin 'xuhdev/vim-latex-live-preview'
 " Plugin 'jistr/vim-nerdtree-tabs' " à enlever
@@ -64,7 +65,7 @@ let localmapleader = "\\"
 
 " Copy and pasting
 vnoremap <C-y> "*y :let @+=@*<CR>
-nnoremap <leader>p "+P
+noremap <leader>p "+P`[v`]=
 
 " Easier move between methods
 nnoremap <leader>m ]m
@@ -127,6 +128,10 @@ nnoremap <leader>sv :source $MYVIMRC<CR>
 " netrw 
 nnoremap <leader>ee :Explore<CR>
 nnoremap <leader>le :Lexplore<bar>vertical resize 30<CR>
+
+" move block of code
+vnoremap J :m '>+1<cr>gv=gv
+vnoremap K :m '<-2<cr>gv=gv
 " }}}
 
 " Options {{{
@@ -152,7 +157,7 @@ set autoindent
 set smartindent
 set cindent
 
-set spell
+" set spell
 set spelllang=en,fr
 
 " Better C++ indentation of lambda function
