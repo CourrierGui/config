@@ -6,15 +6,19 @@
 call plug#begin()
 
 Plug 'rafi/awesome-vim-colorschemes'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'jackguo380/vim-lsp-cxx-highlight'
+
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
+Plug 'ludovicchabant/vim-gutentags'
 
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'lervag/vimtex'
+
 
 call plug#end()
 " }}}
@@ -148,7 +152,10 @@ inoremap <silent><expr> <Tab>
       \ coc#refresh()
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+nnoremap <leader>gd <Plug>(coc-definition)
+
+" vimtex
+let g:vimtex_compiler_progname = 'nvr'
 
 " }}}
 
