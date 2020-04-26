@@ -12,8 +12,9 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'rdnetto/YCM-Generator'
+Plugin 'neoclide/coc.nvim'
+" Plugin 'Valloric/YouCompleteMe'
+" Plugin 'rdnetto/YCM-Generator'
 
 Plugin 'tmhedberg/SimpylFold'
 Plugin 'vim-scripts/indentpython.vim'
@@ -222,10 +223,10 @@ colorscheme dracula
 " colorscheme gotham
 
 " YouCompleteMe
-let g:ycm_autoclose_preview_window_after_completion=1
-let g:ycm_max_diagnostics_to_display=300
-let g:ycm_confirm_extra_conf=0
-map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+" let g:ycm_autoclose_preview_window_after_completion=1
+" let g:ycm_max_diagnostics_to_display=300
+" let g:ycm_confirm_extra_conf=0
+" map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 " python with virtualenv support
 python3 << EOF
@@ -254,10 +255,10 @@ augroup END
 " Python file settings {{{
 augroup filetype_python
     autocmd!
-	" Enable folding
-	au BufNewFile,BufRead *.py set tabstop=4 softtabstop=4 shiftwidth=4 textwidth=120 expandtab autoindent fileformat=unix foldlevel=1
-    autocmd FileType python nnoremap <leader>r :!python3 %<CR>
-augroup END
+	" enable folding
+	au bufnewfile,bufread *.py set tabstop=4 softtabstop=4 shiftwidth=4 textwidth=120 expandtab autoindent fileformat=unix foldlevel=1
+    autocmd filetype python nnoremap <leader>r :!python3 %<cr>
+augroup end
 " }}}
 
 " Vimscript file settings {{{
