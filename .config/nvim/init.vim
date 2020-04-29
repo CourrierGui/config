@@ -1,6 +1,3 @@
-" set runtimepath^=~/.vim runtimepath+=~/.vim/after
-" let &packpath = &runtimepath
-
 " vim-plug {{{
 
 call plug#begin()
@@ -19,8 +16,8 @@ Plug 'ludovicchabant/vim-gutentags'
 
 Plug 'lervag/vimtex'
 
-
 call plug#end()
+
 " }}}
 
 " Mappings {{{
@@ -41,6 +38,9 @@ nnoremap k gk
 nnoremap 0 g0
 nnoremap ^ g^
 nnoremap $ g$
+
+" Execute current line with your shell interpreter and paste result in buffer
+nnoremap Q !!$SHELL<CR>
 
 " make moving between buffers easier
 nmap gh <C-w>h
@@ -97,6 +97,11 @@ nnoremap <leader>le :Lexplore<bar>vertical resize 30<CR>
 " move block of code
 vnoremap J :m '>+1<cr>gv=gv
 vnoremap K :m '<-2<cr>gv=gv
+
+nnoremap <leader>a :call SwitchHeader("find")<CR>
+nnoremap <leader>va :call SwitchHeader("vert sf")<CR>
+nnoremap <leader>ta :call SwitchHeader("tab sf")<CR>
+
 " }}}
 
 " Options {{{
@@ -171,6 +176,13 @@ augroup filetype_vim
 augroup END
 " }}}
 
+" XML file settings {{{
+augroup filetype_html
+  autocmd!
+	autocmd BufNewFile,BufRead *.launch,*.ui set filetype=xml
+augroup END
+" }}}
+
 " Python file settings {{{
 augroup filetype_python
     autocmd!
@@ -178,4 +190,28 @@ augroup filetype_python
 	autocmd bufnewfile,bufread python setlocal tabstop=4 softtabstop=4 shiftwidth=4 textwidth=120 expandtab autoindent fileformat=unix foldlevel=1
   autocmd filetype python nnoremap <leader>r :CocCommand python.execInTerminal<CR>
 augroup end
+" }}}
+
+" Julia file settings {{{
+augroup filetype_python
+  autocmd!
+	autocmd BufNewFile,BufRead *.jl set filetype=julia
+augroup end
+" }}}
+
+" Functions {{{
+
+function! SwitchHeader(cmd)
+  let filename = expand("%:t:r")
+  if expand("%:e") == "hpp"
+    let filename = filename . ".cpp"
+    echom filename
+    execute(a:cmd . " " . filename)
+  elseif expand("%:e") == "cpp"
+    let filename = filename . ".hpp"
+    echom filename
+    execute(a:cmd . " " . filename)
+  endif
+endfunction
+
 " }}}
