@@ -78,7 +78,11 @@ Dropbox
 .sbd
 snap
 src
-.ssh #TODO
+# TODO
+# .ssh
+# texmf
+# .tmux.conf
+
 .subversion
 .sudo_as_admin_successful
 .surf
@@ -86,9 +90,7 @@ src
 Sync
 .tasque.log
 .texlive2017
-texmf #TODO
 tmux-client-6548.log
-.tmux.conf #TODO
 trash
 .tuxguitar-1.2
 Untitled1.ipynb
