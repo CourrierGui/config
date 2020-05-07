@@ -2,15 +2,16 @@
 # system backup
 
 # Backup destination
-backdest=/opt/backup
 user="guillaume"
+backdest="/home/guillaume/.config/backup-tmp"
 
 # Labels for backup name
 pc=asus
 distro=ubuntu
 type=home
 date=$(date "+%F")
-backupfile="$backdest/$distro-$type-$date.tar.gz"
+backupfile="$backdest/$distro-$type-$date.list"
+backuparchive="$backdest/$distro-$type-$date.tar.gz"
 
 # Exclude file location
 prog=${0##*/} # Program name from file
@@ -33,5 +34,5 @@ if [ $executeback = "y" ]; then
   # Without both of these, many programs will stop working!
   # It is safe to remove the verbose (-v) flag. If you are using a 
   # slow terminal, this can greatly speed up the backup process.
-  tar --exclude-from=$exclude_file --xattrs -czpvf $backupfile "/home/$user"
+  tar --listed-incremental=$backupfile --exclude-from=$exclude_file --xattrs -czpvf $backuparchive "/home/$user"
 fi
