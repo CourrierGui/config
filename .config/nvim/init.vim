@@ -14,6 +14,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'ludovicchabant/vim-gutentags'
 
+Plug 'JuliaEditorSupport/julia-vim'
 Plug 'lervag/vimtex'
 
 call plug#end()
@@ -102,6 +103,16 @@ nnoremap <leader>a :call SwitchHeader("find")<CR>
 nnoremap <leader>va :call SwitchHeader("vert sf")<CR>
 nnoremap <leader>ta :call SwitchHeader("tab sf")<CR>
 
+" Vim sessions
+" prepare command to create a new session
+nnoremap <A-s>n :wa<Bar>mksession ~/.config/nvim/sessions/
+" Save current session and prepare to load a new one
+nnoremap <A-s>s :wa<Bar>exe "mksession! " . v:this_session<CR>
+nnoremap <A-s>o :so ~/.config/nvim/sessions/
+
+" terminal mappings
+tnoremap <esc> <c-\><c-n>
+
 " }}}
 
 " Options {{{
@@ -109,6 +120,7 @@ nnoremap <leader>ta :call SwitchHeader("tab sf")<CR>
 set number
 set relativenumber
 set ttimeoutlen=10
+set splitbelow splitright
 
 " Tab to spaces
 set tabstop=2
@@ -195,7 +207,7 @@ augroup end
 " Julia file settings {{{
 augroup filetype_python
   autocmd!
-	autocmd BufNewFile,BufRead *.jl set filetype=julia
+  autocmd BufNewFile,BufRead,BufNewFile *.jl :setlocal filetype=julia
 augroup end
 " }}}
 
